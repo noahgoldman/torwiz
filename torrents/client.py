@@ -3,8 +3,10 @@ from pymongo import MongoClient
 
 def run():
     # Initialize the database
-    client = MongoClient() 
-    print("initialized database")
+    client = MongoClient('mongo', 27017) 
+
+    while True:
+        pass
 
 
 if __name__=='__main__':
