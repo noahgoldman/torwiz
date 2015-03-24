@@ -52,3 +52,9 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Virtualenvs
+env
+
+# VIM swap files
+*.sw[a-z]
