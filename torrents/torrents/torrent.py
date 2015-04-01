@@ -15,6 +15,14 @@ Fields:
     hash: string,
 """
 
+# An enum to represent the status of a torrent
+class TorStatus:
+    UNSTARTED = 0
+    DOWNLOADING = 1
+    STOPPED = 2
+    FINISHED = 3
+    DELETE = 3
+
 class Torrent(object):
 
     def __init__(self, obj=None):
@@ -34,12 +42,3 @@ class Torrent(object):
         self.size_done = obj['size_done']
         self.start_time = obj['startdate']
         self.hash = obj['hash']
-
-class TorrentCollection(object):
-
-    def __init__(self, tordb):
-        self.tordb = tordb
-
-    def get_db(self):
-        #for torrent in tordb.find():
-        pass
