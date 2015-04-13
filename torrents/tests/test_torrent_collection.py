@@ -7,9 +7,13 @@ import pytest
 from torrents.torrent_collection import TorrentCollection
 from torrents.torrent import TorStatus
 
+from bson.objectid import ObjectId
+
 @pytest.fixture
 def torrents():
+
     test_obj1 = {
+            '_id': ObjectId(),
             'name': 'Test1',
             'started': True,
             'dlrate': 10,
@@ -23,6 +27,7 @@ def torrents():
             'hash': hashlib.md5('This is a test').hexdigest()
     }
     test_obj2 = {
+            '_id': ObjectId(),
             'name': 'Test2',
             'started': False,
             'dlrate': 5,

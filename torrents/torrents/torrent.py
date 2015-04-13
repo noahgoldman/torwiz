@@ -31,6 +31,7 @@ class Torrent(object):
 
     # Initialize a torrent object from  
     def init_from_db(self, obj):
+        self.id = obj['_id']
         self.name = obj['name']
         self.started = obj['started']
         self.dlrate = obj['dlrate']
@@ -42,3 +43,9 @@ class Torrent(object):
         self.size_done = obj['size_done']
         self.start_time = obj['startdate']
         self.hash = obj['hash']
+
+    def is_started(self):
+        return self.status != TorStatus.UNSTARTED
+
+    def marked_delete(self):
+        return self.status == TorStatus.DELETE

@@ -5,9 +5,12 @@ from mock import Mock, patch
 
 from torrents.torrent import Torrent
 
+from bson.objectid import ObjectId
+
 class TestTorrents:
 
     test_obj1 = {
+            '_id': ObjectId(),
             'name': 'Test1',
             'started': True,
             'dlrate': 10,
@@ -21,6 +24,7 @@ class TestTorrents:
             'hash': hashlib.md5('This is a test').hexdigest()
     }
     test_obj2 = {
+            '_id': ObjectId(),
             'name': 'Test2',
             'started': False,
             'dlrate': 5,
