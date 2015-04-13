@@ -17,6 +17,8 @@ def run():
     # Initialize the database
     client = MongoClient('mongo', 27017) 
 
+    print("wow such connection")
+
     # Make a torrent collection object 
     torrents = TorrentCollection(client.torrents)
 
