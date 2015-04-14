@@ -14,12 +14,14 @@
  <thead>
    	 <th>Name:</th>
    	 <th>Database Id:</th>
+   	 <th>Progress:</th>
    </thead>
   {% for userinput in userinputs %}
    <tbody>
    	<tr>
    	  <td>'{{userinput.url}}'</td>
    	  <td>'{{userinput._id}}'</td>
+   	  <td><progress value="22" max="100"></progress></td>
     </tr>
      {% endfor %}
    </tbody>
