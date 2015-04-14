@@ -16,17 +16,21 @@
    	 <th>Database Id:</th>
    	 <th>Progress:</th>
    </thead>
-  {% for userinput in userinputs %}
+  {% for torrent in torrents %}
    <tbody>
    	<tr>
-   	  <td>'{{userinput.url}}'</td>
-   	  <td>'{{userinput._id}}'</td>
-   	  <td><progress value="22" max="100"></progress></td>
+       {% if (not torrent.name): %}
+     	  <td>'{{torrent.url}}'</td>
+     	  <td>'{{torrent._id}}'</td>
+     	  <td><progress value="0" max="100"></progress></td>
+       {% else %}
+       <td>'{{torrent.name}}'</td>
+       <td>'{{torrent._id}}'</td>
+       <td><progress value= {{ torrent.size_done }} max= {{ torrent.size }}></progress></td>
+       {% endif %}
+
     </tr>
      {% endfor %}
    </tbody>
 
   </table>
- 
-
- 

@@ -5,7 +5,7 @@ Fields:
     name: str,
     started: bool,
     dlrate: int,
-    status: bool?,
+    status: enum TorStatus class,
     source: string?,
     seeds: int,
     leech: int,
@@ -29,7 +29,7 @@ class Torrent(object):
         if obj is not None:
             self.init_from_db(obj)
 
-    # Initialize a torrent object from  
+    # Initialize a torrent object from
     def init_from_db(self, obj):
         self.id = obj['_id']
         self.name = obj['name']

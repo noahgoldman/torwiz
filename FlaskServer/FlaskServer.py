@@ -22,12 +22,11 @@ handle = connect()
 @app.route("/index" ,methods=['GET'])
 @app.route("/", methods=['GET'])
 def index():
-    userinputs = [x for x in handle.torrents.find()]
-    return render_template('index.html', userinputs=userinputs)
+    torrents = [x for x in handle.torrents.find()]
+    return render_template('index.html', torrents=torrents)
 
 @app.route("/write", methods=['POST'])
 def write():
-
     userinput = request.form.get("userinput")
     handle.torrents.insert({"url":userinput, "status": TorStatus.UNSTARTED})
 
