@@ -12,21 +12,32 @@
  <a href="./deleteall">Delete all</a>
  <table style="width:80%" class="pure-table">
  <thead>
-   	 <th>Name:</th>
-   	 <th>Database Id:</th>
-   	 <th>Progress:</th>
+   	  <th>Name:</th>
+      <th>Size:</th>
+   	  <th>Progress:</th>
+      <th>Download Speed:</th>
+      <th>Seeders:</th>
+      <th>Leechers:</th>
    </thead>
   {% for torrent in torrents %}
    <tbody>
    	<tr>
        {% if (torrent.status == 0): %}
-     	  <td>'{{torrent.url}}'</td>
-     	  <td>'{{torrent._id}}'</td>
+        <td>'{{torrent.url}}'</td>
+        <td>?</td>
      	  <td><progress value="0" max="100"></progress></td>
+        <td>?</td>
+        <td>?</td>
+        <td>?</td>
        {% else %}
        <td>'{{torrent.name}}'</td>
-       <td>'{{torrent._id}}'</td>
+       <td>{{ torrent.size }}</td>
        <td><progress value= {{ torrent.size_done }} max= {{ torrent.size }}></progress></td>
+       <td>{{ torrent.dlrate }}</td>
+       <td>{{ torrent.seeds }}</td>
+       <td>{{ torrent.leech }}</td>
+
+
        {% endif %}
 
     </tr>
