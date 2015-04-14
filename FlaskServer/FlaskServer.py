@@ -2,7 +2,12 @@ from flask import Flask, render_template, request, redirect
 import os
 from pymongo import MongoClient
 from flask.ext.pymongo import PyMongo
-
+class TorStatus:
+    UNSTARTED = 0
+    DOWNLOADING = 1
+    STOPPED = 2
+    FINISHED = 3
+    DELETE = 3
 def connect():
 		connection = MongoClient("ds041157.mongolab.com",41157)
 		handle = connection["torwizdb"]
@@ -22,8 +27,12 @@ def index():
 
 @app.route("/write", methods=['POST'])
 def write():
+
     userinput = request.form.get("userinput")
-    oid = handle.torrents.insert({"url":userinput})
+    handle.torrents.insert({"url":userinput, "status": TorStatus.UNSTARTED})
+
+    #tell the user that it added successfully or not
+
     return redirect ("/")
 
 @app.route("/deleteall", methods=['GET'])
