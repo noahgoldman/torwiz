@@ -16,11 +16,11 @@ The basic flow of the main loop should be:
 """
 def run():
     # Initialize the database
-    client = MongoClient('mongo', 27017) 
+    client = MongoClient('mongo', 27017)
 
-    print("wow such connection")
+    print("wow, such connection, much mongo")
 
-    # Make a torrent collection object 
+    # Make a torrent collection object
     torrents = TorrentCollection(client.torrents)
 
     # Create the torrenting process
