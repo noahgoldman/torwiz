@@ -1,3 +1,4 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/base-context-min.css" rel="stylesheet">
 <html>
 <head>
  <title>Demo</title>
@@ -9,10 +10,17 @@
   <input type="submit" value="Submit">
  </form>
  <a href="./deleteall">Delete all</a>
-
+ <table style="width:100%" class="pure-table">
   {% for userinput in userinputs %}
- <p>'{{userinput.url}}' has database id {{userinput._id}}</p>
- {% endfor %}
-</body>
+   <tbody>
+   	<tr>
+   	  <td>'{{userinput.url}}'</td>
+   	  <td>'{{userinput._id}}'</td>
+    </tr>
+     {% endfor %}
+   </tbody>
 
-</html>
+  </table>
+ 
+
+ 
