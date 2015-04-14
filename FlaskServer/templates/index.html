@@ -1,4 +1,4 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/base-context-min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 <html>
 <head>
  <title>Demo</title>
@@ -10,7 +10,11 @@
   <input type="submit" value="Submit">
  </form>
  <a href="./deleteall">Delete all</a>
- <table style="width:100%" class="pure-table">
+ <table style="width:80%" class="pure-table">
+ <thead>
+   	 <th>Name:</th>
+   	 <th>Database Id:</th>
+   </thead>
   {% for userinput in userinputs %}
    <tbody>
    	<tr>
