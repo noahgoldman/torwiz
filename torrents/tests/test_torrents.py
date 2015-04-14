@@ -12,7 +12,6 @@ class TestTorrents:
     test_obj1 = {
             '_id': ObjectId(),
             'name': 'Test1',
-            'started': True,
             'dlrate': 10,
             'status': 0,
             'source': 'http://testurl.com',
@@ -26,7 +25,6 @@ class TestTorrents:
     test_obj2 = {
             '_id': ObjectId(),
             'name': 'Test2',
-            'started': False,
             'dlrate': 5,
             'status': 0,
             'source': 'http://testurl2.com',

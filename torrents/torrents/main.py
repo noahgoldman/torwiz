@@ -3,6 +3,7 @@ from pymongo import MongoClient
 
 from torrents.torrent_collection import TorrentCollection
 from torrents.downloader import Downloader
+from torrents.file import TorrentFile
 
 """
 The basic flow of the main loop should be:
@@ -21,7 +22,7 @@ def run():
     print("wow, such connection, much mongo")
 
     # Make a torrent collection object
-    torrents = TorrentCollection(client.torrents)
+    torrents = TorrentCollection(client.torwiz.torrents)
 
     # Create the torrenting process
     session = lt.session()
@@ -32,8 +33,11 @@ def run():
         for torrent in torrents.marked_delete():
             downloader.delete(torrent.id)
         for torrent in torrents.not_started():
-            # start the torrents
-            pass
+            # Download the torrent file
+            torfile = TorrentFile(torrent.id)
+            torfile.get_from_url(torrent.url)
+            
+            downloader.add_torrent(torfile.get_data())
 
 if __name__=='__main__':
     run()
