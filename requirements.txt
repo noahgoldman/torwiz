@@ -1,0 +1,12 @@
+docopt==0.6.2
+mock==1.0.1
+py==1.4.26
+pymongo==2.8
+pytest==2.7.0
+PyYAML==3.11
+requests==2.4.3
+six==1.9.0
+texttable==0.8.3
+websocket-client==0.29.0
+Flask==0.10.1
+Flask-PyMongo==0.3.1
