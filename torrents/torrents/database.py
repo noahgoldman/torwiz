@@ -6,3 +6,6 @@ def delete(tordb, obj_id):
 
 def insert(tordb, obj):
     return tordb.insert(obj)
+
+def update_full(tordb, id, obj):
+    tordb.update({'_id': id}, {'$set': obj})

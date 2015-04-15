@@ -76,3 +76,13 @@ class Torrent(object):
 
     def set_started(self):
         self.status = TorStatus.DOWNLOADING
+
+    def update_from_status(self, status):
+        #self.name = status.name
+        self.dlrate = status.download_rate
+        self.seeds = status.num_seeds
+        self.leech = status.num_peers
+        self.size = status.total_wanted
+        self.size_done = status.total_download
+        self.start_time = status.added_time
+        self.hash = str(status.info_hash)

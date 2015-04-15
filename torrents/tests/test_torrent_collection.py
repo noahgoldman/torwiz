@@ -11,7 +11,6 @@ from bson.objectid import ObjectId
 
 @pytest.fixture
 def torrents():
-
     test_obj1 = {
             '_id': ObjectId(),
             'name': 'Test1',
@@ -23,7 +22,7 @@ def torrents():
             'leech': 20,
             'size': 20000,
             'size_done':  10000,
-            'startdate': datetime(2007, 12, 6, 16, 29, 43, 79043),
+            'start_time': datetime(2007, 12, 6, 16, 29, 43, 79043),
             'hash': hashlib.md5('This is a test').hexdigest()
     }
     test_obj2 = {
@@ -37,7 +36,7 @@ def torrents():
             'leech': 100,
             'size': 40000,
             'size_done':  20000,
-            'startdate': datetime(2007, 12, 6, 16, 29, 43, 79043),
+            'start_time': datetime(2007, 12, 6, 16, 29, 43, 79043),
             'hash': hashlib.md5('This is the second test').hexdigest()
     }
 
@@ -45,12 +44,12 @@ def torrents():
 
 class TestTorrentCollection(object):
 
-    def test_get_torrents(self, torrents):
+    def test_refresh(self, torrents):
         db_mock = Mock()
         db_mock.find = Mock(return_value = torrents)
 
         coll = TorrentCollection(db_mock)
-        coll.get_torrents()
+        coll.refresh()
 
         assert len(coll.torrents) == 2
 
@@ -64,7 +63,7 @@ class TestTorrentCollection(object):
         db_mock.find = Mock(return_value = torrents)
 
         coll = TorrentCollection(db_mock)
-        coll.get_torrents()
+        coll.refresh()
         
         not_started = coll.not_started()
         assert len(not_started) is 1
@@ -77,7 +76,7 @@ class TestTorrentCollection(object):
         db_mock.find = Mock(return_value = torrents)
 
         coll = TorrentCollection(db_mock)
-        coll.get_torrents()
+        coll.refresh()
 
         delete = coll.marked_delete()
 

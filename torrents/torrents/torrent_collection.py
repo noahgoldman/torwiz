@@ -15,7 +15,7 @@ class TorrentCollection(object):
         return iter(self.torrents)
 
     # Get all torrents from the database
-    def get_torrents(self):
+    def refresh(self):
         self.torrents = map(Torrent, DB.get_all(self.tordb))
 
     def not_started(self):
@@ -23,3 +23,8 @@ class TorrentCollection(object):
 
     def marked_delete(self):
         return [t for t in self.torrents if t.marked_delete()]
+
+    # Update the database with the torrent objects
+    def update(self):
+        for torrent in self.torrents:
+            DB.update_full(self.tordb, torrent.id, torrent.serialize())

@@ -19,7 +19,7 @@ class TestTorrents:
             'leech': 20,
             'size': 20000,
             'size_done':  10000,
-            'startdate': datetime(2007, 12, 6, 16, 29, 43, 79043),
+            'start_time': datetime(2007, 12, 6, 16, 29, 43, 79043),
             'hash': hashlib.md5('This is a test').hexdigest()
     }
     test_obj2 = {
@@ -32,7 +32,7 @@ class TestTorrents:
             'leech': 100,
             'size': 40000,
             'size_done':  20000,
-            'startdate': datetime(2007, 12, 6, 16, 29, 43, 79043),
+            'start_time': datetime(2007, 12, 6, 16, 29, 43, 79043),
             'hash': hashlib.md5('This is the second test').hexdigest()
     }
 

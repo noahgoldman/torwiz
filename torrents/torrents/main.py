@@ -21,8 +21,6 @@ def run():
     # Initialize the database
     client = MongoClient()
 
-    print("wow, such connection, much mongo")
-
     # Make a torrent collection object
     db = client.torwiz
     torrent_collection = db.torrents
@@ -36,18 +34,25 @@ def run():
     downloader.start(session)
 
     while True:
-        torrents.get_torrents()
+        torrents.refresh()
 
+        # delete torrents that are marked for deletion
         for torrent in torrents.marked_delete():
             downloader.delete(torrent.id)
+
+        # Start torrents that haven't been started
         for torrent in torrents.not_started():
-            print("gettin some rents")
             # Download the torrent file
             torfile = TorrentFile(torrent.id)
             torfile.get_from_url(torrent.source)
             
             downloader.add_torrent(torrent.id, torfile.get_data())
             torrent.set_started()
+
+        for torrent in torrents:
+            torrent.update_from_status(downloader.get_status_by_id(torrent.id))
+
+        torrents.update()
 
 def init_db(tordb):
     tordb.drop() 
@@ -63,8 +68,6 @@ def init_db(tordb):
     t2.status = 0
     t2.source = 'http://torcache.net/torrent/D91FBB667D8F7E9CC653123AABF37BB4851B2270.torrent?title=[kickass.to]the.wolverine.2013.extended.1080p.brrip.x264.yify'
     t2.id = insert(tordb, t2.serialize())
-
-    print("wow we inserted")
 
 if __name__=='__main__':
     run()
