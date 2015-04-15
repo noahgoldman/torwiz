@@ -58,134 +58,70 @@
 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="">Your Site</a>
 
         <ul class="pure-menu-list">
             <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tour</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
         </ul>
     </div>
 </div>
 
 <div class="splash-container">
     <div class="splash">
-        <h1 class="splash-head">Big Bold Text</h1>
-        <p class="splash-subhead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        </p>
-        <p>
-            <a href="http://purecss.io" class="pure-button pure-button-primary">Get Started</a>
-        </p>
+        <h1 class="splash-head">TorWiz</h1>
+         <form action="/write" method="POST" class="pure-form">
+  <p style="color: black">Add a Torrent URL:</p>
+  <input type="text" name="userinput" id="userinput">
+  <input type="submit" value="Submit" class="pure-button pure-button-primary" style="width: 15%">
+ </form>
     </div>
 </div>
 
 <div class="content-wrapper">
-    <div class="content">
-        <h2 class="content-head is-center">Excepteur sint occaecat cupidatat.</h2>
+    
+    <div>
+        
+ 
+ <table style="width:100%" class="pure-table">
 
-        <div class="pure-g">
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-
-                <h3 class="content-subhead">
-                    <i class="fa fa-rocket"></i>
-                    Get Started Quickly
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
-            </div>
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-                <h3 class="content-subhead">
-                    <i class="fa fa-mobile"></i>
-                    Responsive Layouts
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
-            </div>
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-                <h3 class="content-subhead">
-                    <i class="fa fa-th-large"></i>
-                    Modular
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
-            </div>
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-                <h3 class="content-subhead">
-                    <i class="fa fa-check-square-o"></i>
-                    Plays Nice
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="ribbon l-box-lrg pure-g">
-        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-            <img class="pure-img-responsive" alt="File Icons" width="300" src="{{ url_for('static', filename='file-icons.png') }}">
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
-
-            <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor.
-            </p>
-        </div>
-    </div>
-
-    <div class="content">
-        <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
-
-        <div class="pure-g">
-            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked">
-                    <fieldset>
-
-                        <label for="name">Your Name</label>
-                        <input id="name" type="text" placeholder="Your Name">
+ <thead>
+      <th>Name:</th>
+      <th>Size:</th>
+      <th>Progress:</th>
+      <th>Download Speed:</th>
+      <th>Seeders:</th>
+      <th>Leechers:</th>
+   </thead>
+  {% for torrent in torrents %}
+   <tbody>
+    <tr>
+       {% if (torrent.status == 0): %}
+        <td>'{{torrent.url}}'</td>
+        <td>?</td>
+          <td><progress value="0" max="100"></progress></td>
+        <td>?</td>
+        <td>?</td>
+        <td>?</td>
+       {% else %}
+       <td>'{{torrent.name}}'</td>
+       <td>{{ torrent.size }}</td>
+       <td><progress value= {{ torrent.size_done }} max= {{ torrent.size }}></progress></td>
+       <td>{{ torrent.dlrate }}</td>
+       <td>{{ torrent.seeds }}</td>
+       <td>{{ torrent.leech }}</td>
 
 
-                        <label for="email">Your Email</label>
-                        <input id="email" type="email" placeholder="Your Email">
+       {% endif %}
 
-                        <label for="password">Your Password</label>
-                        <input id="password" type="password" placeholder="Your Password">
+    </tr>
+     {% endfor %}
+   </tbody>
 
-                        <button type="submit" class="pure-button">Sign Up</button>
-                    </fieldset>
-                </form>
-            </div>
-
-            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
-                <h4>Contact Us</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
-                </p>
-
-                <h4>More Information</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
-        </div>
-
-    </div>
-
+  </table>
+  <a href="./deleteall">Delete all</a>
+  </br></br></br></br></br></br></br>
+    
     <div class="footer l-box is-center">
-        View the source of this layout to learn more. Made with love by the YUI Team.
+        Download your torrent files over HTTP!
     </div>
 
 </div>
