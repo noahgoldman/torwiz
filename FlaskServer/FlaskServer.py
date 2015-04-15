@@ -9,9 +9,8 @@ class TorStatus:
     FINISHED = 3
     DELETE = 3
 def connect():
-		connection = MongoClient("ds041157.mongolab.com",41157)
-		handle = connection["torwizdb"]
-		handle.authenticate("root","poopdick")
+		connection = MongoClient('localhost', 27017)
+		handle = connection["torwiz"]
 		return handle
 
 
