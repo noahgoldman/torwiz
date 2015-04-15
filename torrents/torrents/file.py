@@ -1,6 +1,6 @@
-import urllib
-
 import os
+
+import requests
 
 OUTPUT_DIR = 'torrent_files'
 
@@ -16,8 +16,10 @@ class TorrentFile:
         return os.path.join(OUTPUT_DIR, str(self.id) + '.torrent')
 
     def get_from_url(self, url):
-        urlopener = urllib.URLopener()
-        urlopener.retrieve(url, self.get_output_file()) 
+        response = requests.get(url)
+
+        with open(self.get_output_file(), 'wb') as f:
+            f.write(response.content)
 
     def get_data(self):
         return open(self.get_output_file(), 'rb').read()

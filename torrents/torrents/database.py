@@ -3,3 +3,6 @@ def get_all(tordb):
 
 def delete(tordb, obj_id):
     tordb.remove([obj_id])
+
+def insert(tordb, obj):
+    return tordb.insert(obj)

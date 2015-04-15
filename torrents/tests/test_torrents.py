@@ -41,15 +41,13 @@ class TestTorrents:
     def test_constructor(self):
         tor1 = Torrent()
 
-        assert not hasattr(tor1, 'name')
-        assert not hasattr(tor1, 'started')
-        assert not hasattr(tor1, 'seeds')
+        assert not tor1.name
+        assert not tor1.seeds
 
         tor2 = Torrent(self.test_obj1)
 
-        assert hasattr(tor2, 'name')
-        assert hasattr(tor2, 'started')
-        assert hasattr(tor2, 'seeds')
+        assert tor2.name
+        assert tor2.seeds
 
 
     def test_init_from_db(self):
