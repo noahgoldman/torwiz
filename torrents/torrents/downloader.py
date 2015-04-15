@@ -20,7 +20,7 @@ class Downloader:
         e = lt.bdecode(data)
         info = lt.torrent_info(e)
 
-        params = { 'save_path': './data/', \
+        params = { 'save_path': './data/' + str(id), \
                    'storage_mode': lt.storage_mode_t.storage_mode_sparse, \
                    'ti': info }
         h = self.ses.add_torrent(params)
