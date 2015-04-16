@@ -26,6 +26,7 @@ class Downloader:
         h = self.ses.add_torrent(params)
 
         self.handles[id] = h
+        return h.name()
 
     def delete(self, id):
         self.ses.remove_torrent(self.handles[id])
