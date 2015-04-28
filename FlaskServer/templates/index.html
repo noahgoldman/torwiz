@@ -77,14 +77,15 @@
 </div>
 
 <div class="content-wrapper">
-    
+
     <div>
-        
- 
+
+
  <table style="width:100%" class="pure-table">
 
  <thead>
       <th>Name:</th>
+      <th>URL:</th>
       <th>Size:</th>
       <th>Progress:</th>
       <th>Download Speed:</th>
@@ -102,7 +103,12 @@
         <td>?</td>
         <td>?</td>
        {% else %}
-       <td>'{{torrent.name}}'</td>
+         {% if ((torrent.size_done == torrent.size) and (torrent.size > 0) ):%}
+         <td><a href="http://localhost:7999/{{torrent._id}}.zip">'{{torrent.name}}'</a></td>
+         {% else %}
+         <td>'{{torrent.name}}'</td>
+         {% endif %}
+       <td><a href="http://localhost:7999/{{torrent._id}}.zip">test</a></td>
        <td>{{ torrent.size }}</td>
        <td><progress value= {{ torrent.size_done }} max= {{ torrent.size }}></progress></td>
        <td>{{ torrent.dlrate }}</td>
@@ -119,7 +125,7 @@
   </table>
   <a href="./deleteall">Delete all</a>
   </br></br></br></br></br></br></br>
-    
+
     <div class="footer l-box is-center">
         Download your torrent files over HTTP!
     </div>
