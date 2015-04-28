@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 import os
 from pymongo import MongoClient
 from flask.ext.pymongo import PyMongo
+from bson import json_util
+
 class TorStatus:
     UNSTARTED = 0
     DOWNLOADING = 1
@@ -27,7 +29,7 @@ def index():
 @app.route("/write", methods=['POST'])
 def write():
     userinput = request.form.get("userinput")
-    handle.torrents.insert({"url":userinput, "status": TorStatus.UNSTARTED})
+    handle.torrents.insert({"name": None, "dlrate": 0, "source":userinput, "status": TorStatus.UNSTARTED, "seeds": 0, "leech": 0, "size": 0, "size_done": 0, "start_time": None, "hash": ''})
 
     #tell the user that it added successfully or not
 
@@ -38,6 +40,10 @@ def deleteall():
     handle.torrents.remove()
     return redirect ("/")
 
+@app.route('/refresh', methods=['GET'])
+def refresh():
+    torrents = [x for x in handle.torrents.find()]
+    return json_util.dumps(torrents) 
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.

@@ -39,22 +39,12 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <!--<![endif]-->
 
-
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 
 
 </head>
 <body>
-
-
-
-
-
-
-
-
 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
@@ -81,7 +71,7 @@
     <div>
         
  
- <table style="width:100%" class="pure-table">
+ <table style="width:100%" class="pure-table" id="torrents_table">
 
  <thead>
       <th>Name:</th>
@@ -91,29 +81,7 @@
       <th>Seeders:</th>
       <th>Leechers:</th>
    </thead>
-  {% for torrent in torrents %}
    <tbody>
-    <tr>
-       {% if (torrent.status == 0): %}
-        <td>'{{torrent.url}}'</td>
-        <td>?</td>
-          <td><progress value="0" max="100"></progress></td>
-        <td>?</td>
-        <td>?</td>
-        <td>?</td>
-       {% else %}
-       <td>'{{torrent.name}}'</td>
-       <td>{{ torrent.size }}</td>
-       <td><progress value= {{ torrent.size_done }} max= {{ torrent.size }}></progress></td>
-       <td>{{ torrent.dlrate }}</td>
-       <td>{{ torrent.seeds }}</td>
-       <td>{{ torrent.leech }}</td>
-
-
-       {% endif %}
-
-    </tr>
-     {% endfor %}
    </tbody>
 
   </table>
