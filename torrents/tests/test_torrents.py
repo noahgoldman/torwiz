@@ -37,7 +37,7 @@ class TestTorrents:
     }
 
 
-
+    #test creating a torrent object
     def test_constructor(self):
         tor1 = Torrent()
 
@@ -49,7 +49,7 @@ class TestTorrents:
         assert tor2.name
         assert tor2.seeds
 
-
+        #test getting a torrent from the db
     def test_init_from_db(self):
         torrent = Torrent()
         torrent.init_from_db(self.test_obj1)

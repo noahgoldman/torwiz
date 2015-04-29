@@ -15,7 +15,7 @@ class Downloader:
         settings = lt.session_settings()
         settings.user_agent = 'Torwiz XP Pro 2003 Ultimate Alfalfa 720 noscope yolo 0.0.1337'
         self.ses.set_settings(settings)
-
+        #adds the torrent file to the database
     def add_torrent(self, id, data):
         e = lt.bdecode(data)
         info = lt.torrent_info(e)
@@ -27,9 +27,9 @@ class Downloader:
 
         self.handles[id] = h
         return h.name()
-
+        #deletes a selected torrent
     def delete(self, id):
         self.ses.remove_torrent(self.handles[id])
-
+        
     def get_status_by_id(self, id):
         return self.handles[id].status()

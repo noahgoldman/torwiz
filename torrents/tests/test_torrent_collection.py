@@ -43,7 +43,7 @@ def torrents():
     return [test_obj1, test_obj2]
 
 class TestTorrentCollection(object):
-
+    #Test functionality of refreshing progressbar
     def test_refresh(self, torrents):
         db_mock = Mock()
         db_mock.find = Mock(return_value = torrents)
@@ -55,7 +55,7 @@ class TestTorrentCollection(object):
 
         assert coll.torrents[0].hash == torrents[0]['hash']
         assert coll.torrents[1].hash == torrents[1]['hash']
-
+    # Tests if a torrent is not started
     def test_not_started(self, torrents):
         torrents[0]['status'] = TorStatus.UNSTARTED
 
@@ -68,7 +68,7 @@ class TestTorrentCollection(object):
         not_started = coll.not_started()
         assert len(not_started) is 1
         assert not_started[0].status == TorStatus.UNSTARTED
-
+    # Tests if a torrent was successfully marked for deletion
     def test_marked_delete(self, torrents):
         torrents[0]['status'] = TorStatus.DELETE
 
