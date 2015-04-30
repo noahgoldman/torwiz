@@ -9,7 +9,7 @@ class TorStatus:
     DOWNLOADING = 1
     STOPPED = 2
     FINISHED = 3
-    DELETE = 3
+    DELETE = 4
 def connect():
 		connection = MongoClient('localhost', 27017)
 		handle = connection["torwiz"]

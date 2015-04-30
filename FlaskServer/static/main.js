@@ -14,15 +14,15 @@ var refresh = function() {
           row += '<td>?</td>';
         }
       } else {
-        if(torrent['size'] == torrent['size_done'] && torrent['size_done'] != 0){
-          row += '<td><a href="http://localhost:7999/' + torrent['_id'] + '.zip">' + torrent['name'] + '</a></td>';
+        if(torrent['status'] == 3){
+          row += '<td><a href="http://localhost:7999/' + torrent['_id'].$oid + '.zip">' + torrent['name'] + '</a></td>';
         }
         else {
           row += '<td>' + torrent['name'] + '</td>';
         }
-        row += '<td>' + torrent['size'] + '</td>';
+        row += '<td>' + (torrent['size'] / 1000000) + ' MB</td>';
         row += '<td><progress value="' + torrent['size_done'] + '" max="' + torrent['size'] + '"></progress></td>';
-        row += '<td>' + torrent['dlrate'] + '</td>';
+        row += '<td>' + (torrent['dlrate'] / 1000) + 'KB/s</td>';
         row += '<td>' + torrent['seeds'] + '</td>';
         row += '<td>' + torrent['leech'] + '</td>';
       }

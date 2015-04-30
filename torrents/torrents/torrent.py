@@ -1,3 +1,5 @@
+import os
+
 """
 A class to encapsulate a torrent object.
 
@@ -21,7 +23,7 @@ class TorStatus:
     DOWNLOADING = 1
     STOPPED = 2
     FINISHED = 3
-    DELETE = 3
+    DELETE = 4
 
 class Torrent(object):
 
@@ -60,6 +62,12 @@ class Torrent(object):
     def marked_delete(self):
         return self.status == TorStatus.DELETE
 
+    def finished(self):
+        return self.status == TorStatus.FINISHED
+
+    def files_dir(self):
+        return os.path.join('data', str(self.id))
+
     def serialize(self):
         return {
                 'name': self.name,
@@ -79,6 +87,11 @@ class Torrent(object):
 
     def update_from_status(self, status):
         #self.name = status.name
+        
+        # Handle changing the status
+        if status.finished_time != 0:
+            self.status = TorStatus.FINISHED
+
         self.dlrate = status.download_rate
         self.seeds = status.num_seeds
         self.leech = status.num_peers
