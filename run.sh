@@ -1,2 +1,2 @@
-python FlaskServer.py
-python run.py
+cd torrents/data
+python -m SimpleHTTPServer 7999

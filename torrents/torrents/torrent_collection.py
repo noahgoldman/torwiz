@@ -24,6 +24,9 @@ class TorrentCollection(object):
     def marked_delete(self):
         return [t for t in self.torrents if t.marked_delete()]
 
+    def finished(self):
+        return [t for t in self.torrents if t.finished()]
+
     # Update the database with the torrent objects
     def update(self):
         for torrent in self.torrents:

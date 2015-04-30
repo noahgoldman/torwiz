@@ -6,6 +6,7 @@ from torrents.downloader import Downloader
 from torrents.file import TorrentFile
 from torrents.database import insert
 from torrents.torrent import Torrent
+from torrents.archive import Archive
 
 """
 The basic flow of the main loop should be:
@@ -39,6 +40,11 @@ def run():
         # delete torrents that are marked for deletion
         for torrent in torrents.marked_delete():
             downloader.delete(torrent.id)
+
+        # zip torrents that are finished
+        for torrent in torrents.finished():
+            archive = Archive(torrent.files_dir() + '.zip')
+            archive.zip(torrent.files_dir())
 
         # Start torrents that haven't been started
         for torrent in torrents.not_started():
