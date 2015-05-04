@@ -1,5 +1,6 @@
 import libtorrent as lt
 from pymongo import MongoClient
+import os
 
 from torrents.torrent_collection import TorrentCollection
 from torrents.downloader import Downloader
@@ -43,8 +44,11 @@ def run():
 
         # zip torrents that are finished
         for torrent in torrents.finished():
-            archive = Archive(torrent.files_dir() + '.zip')
-            archive.zip(torrent.files_dir())
+            torrent_zip = torrent.files_dir() + '.zip'
+            
+            if not os.path.exists(torrent_zip):
+                archive = Archive(torrent_zip)
+                archive.zip(torrent.files_dir())
 
         # Start torrents that haven't been started
         for torrent in torrents.not_started():

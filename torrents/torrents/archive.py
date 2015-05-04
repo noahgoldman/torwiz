@@ -6,8 +6,8 @@ class Archive:
     def __init__(self, path):
         self.path = path
 
-    def write_directory(self, zipf, dir):
-        for root, dirs, files in os.walk(dir):
+    def write_directory(self, zipf, tordir):
+        for root, dirs, files in os.walk(tordir + '/'):
             for file in files:
                 zipf.write(os.path.join(root, file))
     
