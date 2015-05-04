@@ -42,7 +42,7 @@ class Torrent(object):
             self.start_time = None
             self.hash = None
 
-    # Initialize a torrent object from
+    # Initialize a torrent object from db
     def init_from_db(self, obj):
         self.id = obj['_id']
         self.name = obj['name']
@@ -55,10 +55,10 @@ class Torrent(object):
         self.size_done = obj['size_done']
         self.start_time = obj['start_time']
         self.hash = obj['hash']
-
+        # sets status to started
     def is_started(self):
         return self.status != TorStatus.UNSTARTED
-
+        # sets status to delete
     def marked_delete(self):
         return self.status == TorStatus.DELETE
 
@@ -84,7 +84,7 @@ class Torrent(object):
 
     def set_started(self):
         self.status = TorStatus.DOWNLOADING
-
+    #updates container fields with information from status
     def update_from_status(self, status):
         #self.name = status.name
         

@@ -17,10 +17,10 @@ class TorrentCollection(object):
     # Get all torrents from the database
     def refresh(self):
         self.torrents = map(Torrent, DB.get_all(self.tordb))
-
+    # returns for any not started torrents
     def not_started(self):
         return [t for t in self.torrents if not t.is_started()]
-
+    # returns any torrent marked for deletion
     def marked_delete(self):
         return [t for t in self.torrents if t.marked_delete()]
 
